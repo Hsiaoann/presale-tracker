@@ -14,7 +14,7 @@ STATE_FILE = "seen_listings.json"
 OUTPUT_FILE = "listings.xlsx"
 TW = timezone(timedelta(hours=8))
 
-SOURCE_NAME = {"rakuya": "樂屋網", "housefun": "好房網"}
+SOURCE_NAME = {"rakuya": "樂屋網", "housefun": "好房網", "591": "591"}
 
 
 def build_region_lookup():
