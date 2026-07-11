@@ -311,3 +311,162 @@ ADAPTER_MAP = {
     "rakuya": fetch_rakuya,
     "housefun": fetch_housefun,
 }
+
+
+# ══════════════════════════════════════════════════════════
+# 591 新推建案（早期訊號源）
+#
+# 591 的列表本體是 JS 動態載入，requests 抓不到；
+# 但列表頁底部的「新推建案」區塊是靜態 HTML，列出最新上架案
+# （含「尚未取得建照」的超早期案）。建案詳情頁的 <title> 與
+# meta description 是伺服器渲染的，格式：
+#   title: {案名}-新建案-{縣市}{行政區} | 591新建案
+# 策略：抓新推清單 -> 只對「沒見過的ID」抓詳情頁解析區域/價格。
+# 已見過的 ID 從 seen_listings.json 裡既有 591 連結取得，
+# 避免每天重抓所有詳情頁。
+# ══════════════════════════════════════════════════════════
+H591_ID_RE = re.compile(r"newhouse\.591\.com\.tw/(\d+)")
+H591_TITLE_RE = re.compile(
+    r"(.+?)-新建案-(台北市|新北市|桃園市|基隆市)([\u4e00-\u9fa5]{1,3}區)")
+H591_PRICE_RE = re.compile(r"單價([\d.]+)萬元?/坪起?")
+
+H591_REGIONS = {
+    "新北市": "3",
+    "桃園市_青埔": "6",
+}
+H591_QINGPU_DISTRICTS = {"中壢區", "大園區"}
+H591_MAX_NEW_DETAILS = 12    # 每縣市每天最多抓幾個新案詳情頁
+
+
+def _known_591_ids() -> set:
+    """從既有基準線取得已見過的 591 案件 ID，避免重抓詳情頁。"""
+    try:
+        import json as _json
+        with open("seen_listings.json", encoding="utf-8") as f:
+            seen = _json.load(f)
+        ids = set()
+        for item in seen.values():
+            m = H591_ID_RE.search(item.get("url", ""))
+            if m:
+                ids.add(m.group(1))
+        return ids
+    except Exception:
+        return set()
+
+
+def _parse_591_new_block(html: str) -> list:
+    """解析列表頁「新推建案」區塊，回傳 [(id, 案名), ...]（保持頁面順序）。"""
+    soup = BeautifulSoup(html, "lxml")
+    marker = soup.find(string=re.compile("新推建案"))
+    if not marker:
+        return []
+    # 往上找包含多個建案連結的容器
+    node = marker.parent
+    for _ in range(6):
+        if node is None:
+            return []
+        links = node.select("a[href*='newhouse.591.com.tw/']")
+        ids = [(m.group(1), a.get_text(strip=True))
+               for a in links
+               if (m := H591_ID_RE.search(a.get("href", "")))]
+        if len(ids) >= 3:
+            # 排除混入「熱銷建案」等其他區塊：容器不能太大
+            text = node.get_text()
+            if "熱銷建案" in text or "大型建案" in text:
+                node = None  # 找過頭了，改用保守策略
+                break
+            return [(i, n) for i, n in ids if n]
+        node = node.parent
+
+    # 保守策略：marker 後面的兄弟連結，直到遇到下一個區塊標題
+    out = []
+    for el in marker.parent.next_elements:
+        if isinstance(el, str) and ("熱銷建案" in el or "大型建案" in el):
+            break
+        if getattr(el, "name", None) == "a":
+            m = H591_ID_RE.search(el.get("href", ""))
+            t = el.get_text(strip=True)
+            if m and t:
+                out.append((m.group(1), t))
+    return out
+
+
+def _fetch_591_detail(session, bid: str):
+    """抓詳情頁，從 title/meta 解析 (案名, 縣市, 行政區, 價格)。失敗回 None。"""
+    url = f"https://newhouse.591.com.tw/{bid}"
+    try:
+        r = session.get(url, timeout=REQUEST_TIMEOUT)
+        if r.status_code != 200:
+            return None
+        r.encoding = r.apparent_encoding
+    except Exception:
+        return None
+
+    soup = BeautifulSoup(r.text, "lxml")
+    title = soup.title.get_text(strip=True) if soup.title else ""
+    m = H591_TITLE_RE.search(title)
+    if not m:
+        return None
+    name, county, region = m.group(1).strip(), m.group(2), m.group(3)
+
+    desc = ""
+    md = soup.find("meta", attrs={"name": "description"}) or \
+         soup.find("meta", attrs={"property": "og:description"})
+    if md:
+        desc = md.get("content", "")
+    pm = H591_PRICE_RE.search(desc)
+    price = f"{pm.group(1)}萬/坪起" if pm else ("售價未定" if "售價未定" in desc else "")
+
+    return name, county, region, price, url
+
+
+def fetch_591(city: str, cfg: dict) -> List[Listing]:
+    regionid = H591_REGIONS.get(city)
+    if not regionid:
+        return []
+    s = _session()
+    prefix = CITY_PREFIX.get(city, "")
+
+    try:
+        r = s.get(f"https://newhouse.591.com.tw/list?regionid={regionid}",
+                  timeout=REQUEST_TIMEOUT)
+        if r.status_code != 200:
+            print(f"[591][{city}] 列表 HTTP {r.status_code}，略過")
+            return []
+        r.encoding = r.apparent_encoding
+    except Exception as e:
+        print(f"[591][{city}] 列表抓取失敗：{e}")
+        return []
+    time.sleep(REQUEST_DELAY)
+
+    new_block = _parse_591_new_block(r.text)
+    if not new_block:
+        print(f"[591][{city}] 未解析到新推建案區塊（頁面可能改版），略過")
+        return []
+
+    known = _known_591_ids()
+    todo = [(bid, nm) for bid, nm in new_block if bid not in known]
+    print(f"[591][{city}] 新推建案 {len(new_block)} 筆，其中未見過 {len(todo)} 筆")
+
+    out = []
+    for bid, list_name in todo[:H591_MAX_NEW_DETAILS]:
+        detail = _fetch_591_detail(s, bid)
+        time.sleep(REQUEST_DELAY)
+        if not detail:
+            continue
+        name, county, region, price, url = detail
+        if county != prefix:
+            continue
+        if city == "桃園市_青埔" and region not in H591_QINGPU_DISTRICTS:
+            continue
+        # 591 新推清單常標註「(尚未取得建照)」，保留在案名裡當訊號
+        status = "新推" if "尚未取得建照" not in name else "新推(未取得建照)"
+        out.append(Listing(city=city, region=region,
+                           name=name.replace("(尚未取得建照)", "").strip(),
+                           source="591", url=url, price=price, status=status))
+
+    print(f"[591][{city}] 納入 {len(out)} 筆")
+    return out
+
+
+ADAPTER_MAP["591"] = fetch_591
