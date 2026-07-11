@@ -1,0 +1,5 @@
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=5.0.0
+# 若列表為 JavaScript 動態載入，取消下一行註解並改用 Playwright 版 fetch_html
+# playwright>=1.40.0
