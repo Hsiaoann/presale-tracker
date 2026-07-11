@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-"""
-共用資料結構與工具函式。
-"""
+"""共用資料結構與工具函式。"""
 import hashlib
-from dataclasses import dataclass, asdict, field
-from typing import Optional
+from dataclasses import dataclass, asdict
 
 
 @dataclass
@@ -13,29 +10,22 @@ class Listing:
     city: str                    # 來源城市設定名稱，例如 "新北市"
     region: str                  # 行政區，例如 "板橋區"
     name: str                    # 案名
-    source: str                  # 來源網站，例如 "rakuya"
+    source: str                  # 來源網站：rakuya / housefun
     url: str = ""                # 建案詳情頁連結
-    price: str = ""              # 價格帶字串，例如 "88~96萬/坪"，抓不到就留空
-    status: str = ""             # 銷售狀態，例如 "公開銷售"/"最新推案"，抓不到就留空
-    address: str = ""            # 地址或路段（青埔關鍵字過濾會用到）
+    price: str = ""              # 單價字串
+    rooms: str = ""              # 坪數房型
+    address: str = ""            # 地址（好房網有，樂屋網無）
+    status: str = ""             # 預售屋 / 新成屋 / 未標示
 
     def uid(self) -> str:
         """
-        產生穩定的唯一識別碼，用來做每日 diff 比對。
-        優先用網址裡的天然 ID（樂屋網 ehid / 住展 developments 代碼），
-        因為它最穩定、不受案名或行政區文字微調影響；
-        抓不到時才退回 來源+案名+行政區 的雜湊。
-        刻意不把 price/status 納入，這樣「同一個案子降價或狀態改變」
-        不會被誤判成新案（狀態變化另外處理）。
+        唯一識別碼 = 城市 + 行政區 + 案名（正規化後雜湊）。
+        刻意「不」使用各網站自己的ID，因為同一個建案在樂屋網和好房網
+        會有不同的網站ID；用內容當識別碼，跨來源才能自動合併成同一筆，
+        不會同一個案子通知你兩次。
         """
-        import re
-        m = re.search(r"ehid=([0-9a-fA-F]+)", self.url or "")
-        if m:
-            return f"rakuya:{m.group(1)}"
-        m = re.search(r"/developments/([0-9A-Za-z]+)", self.url or "")
-        if m:
-            return f"myhousingex:{m.group(1)}"
-        raw = f"{self.source}|{self.city}|{self.region}|{self.name}".strip()
+        norm = self.name.replace(" ", "").replace("　", "").strip()
+        raw = f"{self.city}|{self.region}|{norm}"
         return hashlib.md5(raw.encode("utf-8")).hexdigest()[:16]
 
     def to_dict(self) -> dict:
@@ -45,12 +35,7 @@ class Listing:
 
 
 def group_by_region(listings, region_groups) -> dict:
-    """
-    把一批 listings 依 config 裡定義的 region_groups 分組。
-    回傳 dict：{分組名稱: [listing, ...]}。
-    不在任何分組定義內的行政區，落到 "其他"。
-    """
-    # 建立 行政區 -> 分組名 的反查表
+    """依 config 的 region_groups 把 listings 分組。未列到的行政區歸「其他」。"""
     region_to_group = {}
     for group_name, regions in region_groups.items():
         for r in regions:
