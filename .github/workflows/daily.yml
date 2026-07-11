@@ -1,1 +1,44 @@
+name: daily-presale-tracker
 
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: install deps
+        run: pip install -r requirements.txt
+
+      - name: run tracker
+        env:
+          NOTIFY_METHOD: ${{ vars.NOTIFY_METHOD }}
+          LINE_CHANNEL_TOKEN: ${{ secrets.LINE_CHANNEL_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+          LINE_NOTIFY_TOKEN: ${{ secrets.LINE_NOTIFY_TOKEN }}
+        run: python main.py
+
+      - name: commit state
+        run: |
+          if [ -n "$(git status --porcelain seen_listings.json)" ]; then
+            git config user.name "presale-bot"
+            git config user.email "bot@users.noreply.github.com"
+            git add seen_listings.json
+            git commit -m "update seen listings"
+            git push
+          else
+            echo "no changes"
+          fi
