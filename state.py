@@ -6,10 +6,16 @@ GitHub Actions 會把這個 JSON commit 回 repo，達到跨日持久化。
 """
 import json
 import os
+from datetime import datetime, timezone, timedelta
 from typing import List
 from models import Listing
 
 STATE_FILE = "seen_listings.json"
+TW = timezone(timedelta(hours=8))
+
+
+def _today() -> str:
+    return datetime.now(TW).strftime("%Y-%m-%d")
 
 
 def load_seen() -> dict:
@@ -49,12 +55,16 @@ def diff_new(current: List[Listing], seen: dict):
         uid = lst.uid()
         if uid not in seen:
             new_listings.append(lst)
-            updated_seen[uid] = lst.to_dict()
+            d = lst.to_dict()
+            d["first_seen"] = _today()        # 首次發現日期
+            updated_seen[uid] = d
         else:
             old_status = seen[uid].get("status", "")
             if lst.status and lst.status != old_status:
                 status_changed.append((lst, old_status))
-            # 更新為最新資訊（價格、狀態可能變動）
-            updated_seen[uid] = lst.to_dict()
+            # 更新為最新資訊（價格、狀態可能變動），但保留原本的首次發現日期
+            d = lst.to_dict()
+            d["first_seen"] = seen[uid].get("first_seen", "")
+            updated_seen[uid] = d
 
     return new_listings, status_changed, updated_seen
