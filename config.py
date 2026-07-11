@@ -18,7 +18,7 @@ NT_DISTRICTS = [
 CITIES = {
     "新北市": {
         "enabled": True,
-        "sources": ["housefun", "rakuya", "591"],
+        "sources": ["housefun", "rakuya"],
         "housefun_districts": [("新北市", d) for d in NT_DISTRICTS],
         "region_groups": {
             "板橋雙和線": ["板橋區", "中和區", "永和區"],
