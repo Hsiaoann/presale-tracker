@@ -28,21 +28,25 @@ jobs:
           NOTIFY_METHOD: ${{ vars.NOTIFY_METHOD }}
           LINE_CHANNEL_TOKEN: ${{ secrets.LINE_CHANNEL_TOKEN }}
           LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
-          LINE_NOTIFY_TOKEN: ${{ secrets.LINE_NOTIFY_TOKEN }}
         run: python main.py
+
+      - name: export excel
+        run: python export_excel.py
 
       - name: commit state
         run: |
           git config user.name "presale-bot"
           git config user.email "bot@users.noreply.github.com"
           cp seen_listings.json /tmp/seen.json
+          cp listings.xlsx /tmp/listings.xlsx
           git fetch origin main
           git reset --hard origin/main
           cp /tmp/seen.json seen_listings.json
-          git add seen_listings.json
+          cp /tmp/listings.xlsx listings.xlsx
+          git add seen_listings.json listings.xlsx
           if git diff --cached --quiet; then
             echo "no changes"
           else
-            git commit -m "update seen listings"
+            git commit -m "update listings"
             git push
           fi
