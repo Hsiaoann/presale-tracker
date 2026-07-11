@@ -23,14 +23,6 @@ jobs:
       - name: install deps
         run: pip install -r requirements.txt
 
-      - name: debug fetch
-        run: |
-          curl -s -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" "https://www.rakuya.com.tw/nc/result?tab=presale_house" -o page.html -w "HTTP %{http_code}, size %{size_download} bytes\n" || echo "curl failed"
-          echo "--- nc_item count ---"
-          grep -o "nc_item" page.html | wc -l || true
-          echo "--- first 1500 chars ---"
-          head -c 1500 page.html || true
-
       - name: run tracker
         env:
           NOTIFY_METHOD: ${{ vars.NOTIFY_METHOD }}
@@ -43,11 +35,14 @@ jobs:
         run: |
           git config user.name "presale-bot"
           git config user.email "bot@users.noreply.github.com"
-          git pull --rebase origin main
-          if [ -n "$(git status --porcelain seen_listings.json)" ]; then
-            git add seen_listings.json
+          cp seen_listings.json /tmp/seen.json
+          git fetch origin main
+          git reset --hard origin/main
+          cp /tmp/seen.json seen_listings.json
+          git add seen_listings.json
+          if git diff --cached --quiet; then
+            echo "no changes"
+          else
             git commit -m "update seen listings"
             git push
-          else
-            echo "no changes"
           fi
