@@ -23,6 +23,14 @@ jobs:
       - name: install deps
         run: pip install -r requirements.txt
 
+      - name: debug fetch
+        run: |
+          curl -s -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" "https://www.rakuya.com.tw/nc/result?tab=presale_house" -o page.html -w "HTTP %{http_code}, size %{size_download} bytes\n"
+          echo "--- nc_item 出現次數 ---"
+          grep -o "nc_item" page.html | wc -l
+          echo "--- 頁面開頭1500字 ---"
+          head -c 1500 page.html
+
       - name: run tracker
         env:
           NOTIFY_METHOD: ${{ vars.NOTIFY_METHOD }}
