@@ -18,7 +18,7 @@ NT_DISTRICTS = [
 CITIES = {
     "新北市": {
         "enabled": True,
-        "sources": ["housefun", "rakuya"],
+        "sources": ["housefun", "rakuya", "591"],
         "housefun_districts": [("新北市", d) for d in NT_DISTRICTS],
         "region_groups": {
             "板橋雙和線": ["板橋區", "中和區", "永和區"],
@@ -31,7 +31,7 @@ CITIES = {
     },
     "桃園市_青埔": {
         "enabled": True,
-        "sources": ["housefun", "rakuya"],
+        "sources": ["housefun", "rakuya", "591"],
         "housefun_districts": [("桃園市", "中壢區"), ("桃園市", "大園區")],
         "region_groups": {
             "青埔周邊（中壢/大園）": ["中壢區", "大園區"],
