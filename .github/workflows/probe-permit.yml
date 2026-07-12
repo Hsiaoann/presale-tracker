@@ -1,0 +1,32 @@
+name: probe-permit
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: probe new taipei
+        run: |
+          echo "===== 新北市 建造執照 API ====="
+          URL="https://building-apply.publicwork.ntpc.gov.tw/opendata/OpenDataSearchUrl.do?d=OPENDATA&c=BUILDLIC&Start=1&%E5%9F%B7%E7%85%A7%E9%A1%9E%E5%88%A5=%E5%BB%BA%E9%80%A0%E5%9F%B7%E7%85%A7&%E5%9C%B0%E8%99%9F.%E8%A1%8C%E6%94%BF%E5%8D%80=%E5%9C%9F%E5%9F%8E"
+          curl -s -L "$URL" -o ntpc.txt -w "HTTP %{http_code}, size %{size_download} bytes\n" || echo "curl failed"
+          echo "--- 前 1500 字 ---"
+          head -c 1500 ntpc.txt || true
+          echo ""
+          echo ""
+
+      - name: probe taoyuan
+        run: |
+          echo "===== 桃園市 建造執照 API（試 3 個候選網址）====="
+          Q="?d=OPENDATA&c=BUILDLIC&Start=1&%E5%9F%B7%E7%85%A7%E9%A1%9E%E5%88%A5=%E5%BB%BA%E9%80%A0%E5%9F%B7%E7%85%A7&%E5%9C%B0%E8%99%9F.%E8%A1%8C%E6%94%BF%E5%8D%80=%E4%B8%AD%E5%A3%A2"
+          for BASE in \
+            "https://building.tycg.gov.tw/opendata/OpenDataSearchUrl.do" \
+            "https://bmg.tycg.gov.tw/opendata/OpenDataSearchUrl.do" \
+            "https://cpabm.cpami.gov.tw/opendata/OpenDataSearchUrl.do" ; do
+            echo "--- 試 $BASE ---"
+            curl -s -L --max-time 25 "${BASE}${Q}" -o ty.txt -w "HTTP %{http_code}, size %{size_download} bytes\n" || echo "curl failed"
+            head -c 400 ty.txt || true
+            echo ""
+          done
