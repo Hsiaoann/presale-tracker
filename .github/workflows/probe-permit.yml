@@ -7,26 +7,25 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: probe new taipei
+      - name: probe ntpc variants
         run: |
-          echo "===== 新北市 建造執照 API ====="
-          URL="https://building-apply.publicwork.ntpc.gov.tw/opendata/OpenDataSearchUrl.do?d=OPENDATA&c=BUILDLIC&Start=1&%E5%9F%B7%E7%85%A7%E9%A1%9E%E5%88%A5=%E5%BB%BA%E9%80%A0%E5%9F%B7%E7%85%A7&%E5%9C%B0%E8%99%9F.%E8%A1%8C%E6%94%BF%E5%8D%80=%E5%9C%9F%E5%9F%8E"
-          curl -s -L "$URL" -o ntpc.txt -w "HTTP %{http_code}, size %{size_download} bytes\n" || echo "curl failed"
-          echo "--- 前 1500 字 ---"
-          head -c 1500 ntpc.txt || true
-          echo ""
-          echo ""
-
-      - name: probe taoyuan
-        run: |
-          echo "===== 桃園市 建造執照 API（試 3 個候選網址）====="
-          Q="?d=OPENDATA&c=BUILDLIC&Start=1&%E5%9F%B7%E7%85%A7%E9%A1%9E%E5%88%A5=%E5%BB%BA%E9%80%A0%E5%9F%B7%E7%85%A7&%E5%9C%B0%E8%99%9F.%E8%A1%8C%E6%94%BF%E5%8D%80=%E4%B8%AD%E5%A3%A2"
-          for BASE in \
-            "https://building.tycg.gov.tw/opendata/OpenDataSearchUrl.do" \
-            "https://bmg.tycg.gov.tw/opendata/OpenDataSearchUrl.do" \
-            "https://cpabm.cpami.gov.tw/opendata/OpenDataSearchUrl.do" ; do
-            echo "--- 試 $BASE ---"
-            curl -s -L --max-time 25 "${BASE}${Q}" -o ty.txt -w "HTTP %{http_code}, size %{size_download} bytes\n" || echo "curl failed"
-            head -c 400 ty.txt || true
+          BASE="https://building-apply.publicwork.ntpc.gov.tw/opendata/OpenDataSearchUrl.do"
+          try () {
+            echo "=============================="
+            echo "TEST: $1"
+            curl -s -L --max-time 30 -G "$BASE" \
+              --data-urlencode "d=OPENDATA" \
+              --data-urlencode "c=BUILDLIC" \
+              --data-urlencode "Start=1" \
+              "${@:2}" -o r.txt -w "HTTP %{http_code}, size %{size_download}\n"
+            head -c 900 r.txt
             echo ""
-          done
+          }
+
+          try "只給執照類別" --data-urlencode "執照類別=建造執照"
+          try "類別+發照日期(115年06月)" --data-urlencode "執照類別=建造執照" --data-urlencode "發照日期=115年06月"
+          try "類別+發照日期(115年05月)" --data-urlencode "執照類別=建造執照" --data-urlencode "發照日期=115年05月"
+          try "類別+行政區(土城區)" --data-urlencode "執照類別=建造執照" --data-urlencode "地號.行政區=土城區"
+          try "類別+日期+行政區(土城區)" --data-urlencode "執照類別=建造執照" --data-urlencode "發照日期=115年06月" --data-urlencode "地號.行政區=土城區"
+          try "完全不給條件" 
+          try "使用執照+115年06月" --data-urlencode "執照類別=使用執照" --data-urlencode "發照日期=115年06月"
