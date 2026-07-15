@@ -272,6 +272,19 @@
     "uid": "079ff04f0a80d3b4",
     "url": "https://newhouse.housefun.com.tw/building/1815641941"
   },
+  "0892bd944d9b2840": {
+    "address": "",
+    "city": "桃園市_青埔",
+    "first_seen": "2026-07-15",
+    "name": "力璞翔-豐禾",
+    "price": "萬元/坪",
+    "region": "大園區",
+    "rooms": "",
+    "source": "rakuya",
+    "status": "預售屋",
+    "uid": "0892bd944d9b2840",
+    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=042f000017924f"
+  },
   "08e98a6c6fa6fea4": {
     "address": "",
     "city": "桃園市_青埔",
@@ -1922,6 +1935,19 @@
     "status": "預售屋",
     "uid": "448ac383579135a6",
     "url": "https://www.rakuya.com.tw/nc_item/info?ehid=010b640014887b"
+  },
+  "44d6db17c37103a3": {
+    "address": "",
+    "city": "桃園市_青埔",
+    "first_seen": "2026-07-15",
+    "name": "山榆.柏悅",
+    "price": "",
+    "region": "大園區",
+    "rooms": "",
+    "source": "rakuya",
+    "status": "預售屋",
+    "uid": "44d6db17c37103a3",
+    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=0f065d00179232"
   },
   "4502ad696d5c381e": {
     "address": "新北市鶯歌區鳳七路與龍三路口",
