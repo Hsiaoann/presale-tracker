@@ -1274,11 +1274,11 @@
     "url": "https://newhouse.housefun.com.tw/building/737345539"
   },
   "2fbacce2a6fc1fcd": {
-    "address": "新北市樹林區民權街",
+    "address": "新北市樹林區民權街68號旁",
     "city": "新北市",
     "first_seen": "2026-07-11",
-    "name": "騰翔樹与苑",
-    "price": "萬/戶",
+    "name": "騰翔 樹与苑",
+    "price": "萬/坪",
     "region": "樹林區",
     "rooms": "",
     "source": "housefun",
@@ -3795,6 +3795,19 @@
     "uid": "945b45daff56f916",
     "url": "https://newhouse.housefun.com.tw/building/1037205571"
   },
+  "947f50ad76fed701": {
+    "address": "新北市土城區金城路二段181號",
+    "city": "新北市",
+    "first_seen": "2026-07-20",
+    "name": "金城舞3-學世花園",
+    "price": "售價未定",
+    "region": "土城區",
+    "rooms": "",
+    "source": "housefun",
+    "status": "未標示",
+    "uid": "947f50ad76fed701",
+    "url": "https://newhouse.housefun.com.tw/building/2068416080"
+  },
   "95197fa4a27644f3": {
     "address": "",
     "city": "新北市",
@@ -5720,17 +5733,17 @@
     "url": "https://newhouse.housefun.com.tw/building/2079031584"
   },
   "db029f45c5a58eef": {
-    "address": "",
+    "address": "新北市鶯歌區永和街56巷13號",
     "city": "新北市",
     "first_seen": "2026-07-11",
     "name": "馥春居",
-    "price": "",
+    "price": "萬/戶",
     "region": "鶯歌區",
     "rooms": "",
-    "source": "rakuya",
-    "status": "預售屋",
+    "source": "housefun",
+    "status": "未標示",
     "uid": "db029f45c5a58eef",
-    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=01ea2000150682"
+    "url": "https://newhouse.housefun.com.tw/building/580261005"
   },
   "db3d33ae3b6b5bd6": {
     "address": "新北市三峽區國慶路與學成路交叉口",
