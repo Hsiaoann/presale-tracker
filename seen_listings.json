@@ -727,6 +727,19 @@
     "uid": "1997bb6f2c978803",
     "url": "https://www.rakuya.com.tw/nc_item/info?ehid=058b4f0017554f"
   },
+  "1ac3e760b46f2d64": {
+    "address": "",
+    "city": "新北市",
+    "first_seen": "2026-08-03",
+    "name": "偉鉅雙捷韻",
+    "price": "萬元/坪",
+    "region": "中和區",
+    "rooms": "",
+    "source": "rakuya",
+    "status": "預售屋",
+    "uid": "1ac3e760b46f2d64",
+    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=03567f0017947b"
+  },
   "1ad7f253db94170f": {
     "address": "新北市新莊區中原路及中華路口",
     "city": "新北市",
@@ -3873,6 +3886,19 @@
     "uid": "96970608e19c8f40",
     "url": "https://www.rakuya.com.tw/nc_item/info?ehid=00444600171823"
   },
+  "96c6026cb3aa7ff5": {
+    "address": "新北市三重區忠孝路三段151號",
+    "city": "新北市",
+    "first_seen": "2026-08-03",
+    "name": "茂森雲鼎",
+    "price": "萬/坪",
+    "region": "三重區",
+    "rooms": "",
+    "source": "housefun",
+    "status": "未標示",
+    "uid": "96c6026cb3aa7ff5",
+    "url": "https://newhouse.housefun.com.tw/building/401189379"
+  },
   "972eeff3d906cbcb": {
     "address": "桃園市大園區環區西路與科五路交叉口",
     "city": "桃園市_青埔",
@@ -4470,6 +4496,19 @@
     "status": "預售屋",
     "uid": "ab6bfef67136f242",
     "url": "https://newhouse.housefun.com.tw/building/1014745720"
+  },
+  "ac0f5e37322cba6f": {
+    "address": "新北市蘆洲區九芎街171號",
+    "city": "新北市",
+    "first_seen": "2026-08-03",
+    "name": "睿悅",
+    "price": "萬/戶",
+    "region": "蘆洲區",
+    "rooms": "",
+    "source": "housefun",
+    "status": "未標示",
+    "uid": "ac0f5e37322cba6f",
+    "url": "https://newhouse.housefun.com.tw/building/780136460"
   },
   "ac36feadff851469": {
     "address": "桃園市大園區柴梳崙路268巷",
@@ -5754,7 +5793,7 @@
     "region": "板橋區",
     "rooms": "",
     "source": "housefun",
-    "status": "預售屋",
+    "status": "未標示",
     "uid": "da160239f780d843",
     "url": "https://newhouse.housefun.com.tw/building/2079031584"
   },
