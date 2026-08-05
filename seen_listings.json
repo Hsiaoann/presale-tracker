@@ -974,6 +974,19 @@
     "uid": "23951536bc4574ac",
     "url": "https://newhouse.housefun.com.tw/building/823129264"
   },
+  "244175704307952b": {
+    "address": "",
+    "city": "新北市",
+    "first_seen": "2026-08-05",
+    "name": "光全御苑",
+    "price": "",
+    "region": "淡水區",
+    "rooms": "",
+    "source": "rakuya",
+    "status": "預售屋",
+    "uid": "244175704307952b",
+    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=011ae100179574"
+  },
   "25c80e3a493f0a7f": {
     "address": "新北市新莊區副都心段一小段228、231、242地號",
     "city": "新北市",
@@ -1714,6 +1727,19 @@
     "status": "未標示",
     "uid": "3966851e4292e3d1",
     "url": "https://newhouse.housefun.com.tw/building/1581647214"
+  },
+  "3a4d2061af071a93": {
+    "address": "",
+    "city": "新北市",
+    "first_seen": "2026-08-05",
+    "name": "原森",
+    "price": "",
+    "region": "林口區",
+    "rooms": "",
+    "source": "rakuya",
+    "status": "預售屋",
+    "uid": "3a4d2061af071a93",
+    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=09a84500165963"
   },
   "3a6646fa761030bf": {
     "address": "桃園市大園區永園路二段152號旁",
@@ -3821,6 +3847,19 @@
     "uid": "945b45daff56f916",
     "url": "https://newhouse.housefun.com.tw/building/1037205571"
   },
+  "945ecdb1a5b0eb55": {
+    "address": "",
+    "city": "新北市",
+    "first_seen": "2026-08-05",
+    "name": "寶格利",
+    "price": "",
+    "region": "板橋區",
+    "rooms": "",
+    "source": "rakuya",
+    "status": "預售屋",
+    "uid": "945ecdb1a5b0eb55",
+    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=0ce5ab00179612"
+  },
   "947f50ad76fed701": {
     "address": "新北市土城區金城路二段181號",
     "city": "新北市",
@@ -4822,6 +4861,19 @@
     "uid": "ba84be49f081589b",
     "url": "https://newhouse.housefun.com.tw/building/1217776005"
   },
+  "bb91a56a95127a96": {
+    "address": "",
+    "city": "桃園市_青埔",
+    "first_seen": "2026-08-05",
+    "name": "立信悦榕",
+    "price": "萬元/坪",
+    "region": "中壢區",
+    "rooms": "",
+    "source": "rakuya",
+    "status": "預售屋",
+    "uid": "bb91a56a95127a96",
+    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=0ec80e00179738"
+  },
   "bbbf1ba07455289c": {
     "address": "",
     "city": "桃園市_青埔",
@@ -5718,6 +5770,19 @@
     "status": "預售屋",
     "uid": "d849e05d79c8014b",
     "url": "https://newhouse.housefun.com.tw/building/1473534772"
+  },
+  "d8ee5e3a1f6aeaf5": {
+    "address": "",
+    "city": "新北市",
+    "first_seen": "2026-08-05",
+    "name": "四季Lavie",
+    "price": "萬元/坪",
+    "region": "八里區",
+    "rooms": "",
+    "source": "rakuya",
+    "status": "預售屋",
+    "uid": "d8ee5e3a1f6aeaf5",
+    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=0345ad00152403"
   },
   "d905b2fdd660f84d": {
     "address": "新北市林口區建林段645地號",
