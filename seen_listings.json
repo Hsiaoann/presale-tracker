@@ -77,6 +77,19 @@
     "uid": "02b9597df934fd56",
     "url": "https://newhouse.housefun.com.tw/building/1516892277"
   },
+  "03126a79f7bdb7e0": {
+    "address": "",
+    "city": "桃園市_青埔",
+    "first_seen": "2026-08-07",
+    "name": "立鴻晶硯",
+    "price": "萬元/坪",
+    "region": "大園區",
+    "rooms": "",
+    "source": "rakuya",
+    "status": "預售屋",
+    "uid": "03126a79f7bdb7e0",
+    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=0bb6f100180294"
+  },
   "03179f4bbad06557": {
     "address": "新北市板橋區重慶路346巷與和平路交叉口",
     "city": "新北市",
@@ -128,6 +141,19 @@
     "status": "未標示",
     "uid": "03a46e20f5f52065",
     "url": "https://newhouse.housefun.com.tw/building/1638555160"
+  },
+  "03f917545bec7436": {
+    "address": "",
+    "city": "新北市",
+    "first_seen": "2026-08-07",
+    "name": "偉鉅中山双匯",
+    "price": "",
+    "region": "中和區",
+    "rooms": "",
+    "source": "rakuya",
+    "status": "預售屋",
+    "uid": "03f917545bec7436",
+    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=0399ff00180050"
   },
   "043a830a593733f0": {
     "address": "新北市林口區工四路20號",
