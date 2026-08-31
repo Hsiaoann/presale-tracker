@@ -4077,7 +4077,7 @@
     "region": "新莊區",
     "rooms": "",
     "source": "housefun",
-    "status": "預售屋",
+    "status": "未標示",
     "uid": "989d66aa227bf2ff",
     "url": "https://newhouse.housefun.com.tw/building/1184909275"
   },
@@ -4301,6 +4301,19 @@
     "status": "預售屋",
     "uid": "a3d6b9c2734ecb25",
     "url": "https://www.rakuya.com.tw/nc_item/info?ehid=077f8f0010166c"
+  },
+  "a4060ba3b6ee9889": {
+    "address": "新北市五股區新五路二段、新城一路與芳洲一路",
+    "city": "新北市",
+    "first_seen": "2026-08-31",
+    "name": "富總青沐",
+    "price": "萬/坪",
+    "region": "五股區",
+    "rooms": "",
+    "source": "housefun",
+    "status": "未標示",
+    "uid": "a4060ba3b6ee9889",
+    "url": "https://newhouse.housefun.com.tw/building/524520501"
   },
   "a43d8890b35c7683": {
     "address": "新北市土城區金城路二段",
