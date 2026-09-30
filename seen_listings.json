@@ -584,6 +584,19 @@
     "uid": "12a8454ddbdd11fe",
     "url": "https://newhouse.housefun.com.tw/building/1165526923"
   },
+  "1304e2c1907a5e06": {
+    "address": "新北市五股區成泰路三段322號",
+    "city": "新北市",
+    "first_seen": "2026-09-30",
+    "name": "星波畔",
+    "price": "萬/坪",
+    "region": "五股區",
+    "rooms": "",
+    "source": "housefun",
+    "status": "預售屋",
+    "uid": "1304e2c1907a5e06",
+    "url": "https://newhouse.housefun.com.tw/building/751150463"
+  },
   "133c8d06d09c3a5a": {
     "address": "新北市淡水區中正東路二段5巷35號",
     "city": "新北市",
@@ -1378,17 +1391,17 @@
     "url": "https://newhouse.housefun.com.tw/building/1318986128"
   },
   "302f3da49d27c2d3": {
-    "address": "",
+    "address": "新北市三重區大同南路172巷",
     "city": "新北市",
     "first_seen": "2026-07-11",
     "name": "圓富ONE",
-    "price": "萬元/坪",
+    "price": "售價未定",
     "region": "三重區",
     "rooms": "",
-    "source": "rakuya",
+    "source": "housefun",
     "status": "預售屋",
     "uid": "302f3da49d27c2d3",
-    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=051f380017930e"
+    "url": "https://newhouse.housefun.com.tw/building/1502725925"
   },
   "3030909eab0cdefa": {
     "address": "新北市新莊區昌德街上",
@@ -4355,17 +4368,17 @@
     "url": "https://newhouse.housefun.com.tw/building/1430188166"
   },
   "a551026a627c5828": {
-    "address": "",
+    "address": "桃園市大園區園七街9號對面",
     "city": "桃園市_青埔",
     "first_seen": "2026-07-11",
     "name": "大地昕",
-    "price": "萬元/坪",
+    "price": "萬/坪",
     "region": "大園區",
     "rooms": "",
-    "source": "rakuya",
+    "source": "housefun",
     "status": "預售屋",
     "uid": "a551026a627c5828",
-    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=03c64e00162243"
+    "url": "https://newhouse.housefun.com.tw/building/1320278513"
   },
   "a5e7b2fda2c2ff79": {
     "address": "新北市三重區五谷王北街75巷旁",
@@ -4654,17 +4667,17 @@
     "url": "https://newhouse.housefun.com.tw/building/780136460"
   },
   "ac36feadff851469": {
-    "address": "",
+    "address": "桃園市大園區柴梳崙路268巷",
     "city": "桃園市_青埔",
     "first_seen": "2026-07-11",
     "name": "家綻2",
-    "price": "萬元/坪",
+    "price": "萬/坪",
     "region": "大園區",
     "rooms": "",
-    "source": "rakuya",
+    "source": "housefun",
     "status": "預售屋",
     "uid": "ac36feadff851469",
-    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=03209f00173353"
+    "url": "https://newhouse.housefun.com.tw/building/900425328"
   },
   "ade9cf8542443a2e": {
     "address": "新北市五股區登林路67號旁",
@@ -5083,17 +5096,17 @@
     "url": "https://www.rakuya.com.tw/nc_item/info?ehid=08c3b700146318"
   },
   "bff661d56d32e176": {
-    "address": "",
+    "address": "新北市五股區新城一路215號對面",
     "city": "新北市",
     "first_seen": "2026-07-11",
     "name": "九揚雙子星",
-    "price": "萬元/坪",
+    "price": "萬/坪",
     "region": "五股區",
     "rooms": "",
-    "source": "rakuya",
+    "source": "housefun",
     "status": "預售屋",
     "uid": "bff661d56d32e176",
-    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=0df6a100171639"
+    "url": "https://newhouse.housefun.com.tw/building/96210259"
   },
   "c0998a232f631cc4": {
     "address": "",
@@ -5876,17 +5889,17 @@
     "url": "https://newhouse.housefun.com.tw/building/1473534772"
   },
   "d8cce94e417a9c2c": {
-    "address": "",
+    "address": "新北市五股區御成路",
     "city": "新北市",
     "first_seen": "2026-08-27",
     "name": "微美之星",
-    "price": "萬元/坪",
+    "price": "萬/坪",
     "region": "五股區",
     "rooms": "",
-    "source": "rakuya",
+    "source": "housefun",
     "status": "預售屋",
     "uid": "d8cce94e417a9c2c",
-    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=01b53100180657"
+    "url": "https://newhouse.housefun.com.tw/building/757003867"
   },
   "d8ee5e3a1f6aeaf5": {
     "address": "",
@@ -5967,17 +5980,17 @@
     "url": "https://www.rakuya.com.tw/nc_item/info?ehid=07e7bf00177475"
   },
   "da160239f780d843": {
-    "address": "",
+    "address": "新北市板橋區民生路二段183號旁",
     "city": "新北市",
     "first_seen": "2026-07-11",
     "name": "新板東京",
-    "price": "萬元/坪",
+    "price": "售價未定",
     "region": "板橋區",
     "rooms": "",
-    "source": "rakuya",
-    "status": "預售屋",
+    "source": "housefun",
+    "status": "未標示",
     "uid": "da160239f780d843",
-    "url": "https://www.rakuya.com.tw/nc_item/info?ehid=0b4bc700172776"
+    "url": "https://newhouse.housefun.com.tw/building/2079031584"
   },
   "db029f45c5a58eef": {
     "address": "新北市鶯歌區永和街56巷13號",
