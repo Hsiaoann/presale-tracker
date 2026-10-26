@@ -2469,6 +2469,19 @@
     "uid": "577e05a33fb3e96b",
     "url": "https://newhouse.housefun.com.tw/building/270101893"
   },
+  "5807c702b7ec292e": {
+    "address": "新北市淡水區新市二路三段36巷8~38號",
+    "city": "新北市",
+    "first_seen": "2026-10-26",
+    "name": "和光富邑",
+    "price": "萬/坪",
+    "region": "淡水區",
+    "rooms": "",
+    "source": "housefun",
+    "status": "未標示",
+    "uid": "5807c702b7ec292e",
+    "url": "https://newhouse.housefun.com.tw/building/1113604701"
+  },
   "5844a6cea820cf52": {
     "address": "",
     "city": "桃園市_青埔",
@@ -3081,7 +3094,7 @@
     "url": "https://newhouse.housefun.com.tw/building/938873820"
   },
   "73e22342eb0ba7a2": {
-    "address": "新北市永和區永和路一段45號",
+    "address": "新北市永和區永和路一段",
     "city": "新北市",
     "first_seen": "2026-10-22",
     "name": "冠輝永萃",
@@ -3089,7 +3102,7 @@
     "region": "永和區",
     "rooms": "",
     "source": "housefun",
-    "status": "預售屋",
+    "status": "未標示",
     "uid": "73e22342eb0ba7a2",
     "url": "https://newhouse.housefun.com.tw/building/185752999"
   },
