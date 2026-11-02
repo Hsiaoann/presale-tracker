@@ -2755,6 +2755,19 @@
     "uid": "63082340ea6c33c7",
     "url": "https://newhouse.housefun.com.tw/building/762497609"
   },
+  "63e3436bc0a011e2": {
+    "address": "新北市板橋區華江八路70號",
+    "city": "新北市",
+    "first_seen": "2026-11-02",
+    "name": "豐光",
+    "price": "萬/坪",
+    "region": "板橋區",
+    "rooms": "",
+    "source": "housefun",
+    "status": "未標示",
+    "uid": "63e3436bc0a011e2",
+    "url": "https://newhouse.housefun.com.tw/building/751244669"
+  },
   "645691295862ded4": {
     "address": "新北市永和區中正路388號旁",
     "city": "新北市",
@@ -5247,7 +5260,7 @@
     "region": "三重區",
     "rooms": "",
     "source": "housefun",
-    "status": "未標示",
+    "status": "預售屋",
     "uid": "c38862f7a48270fa",
     "url": "https://newhouse.housefun.com.tw/building/1176180610"
   },
